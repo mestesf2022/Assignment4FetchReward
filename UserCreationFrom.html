@@ -1,0 +1,56 @@
+<html lang="en">
+  <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+	var occupations;
+	var states;
+      $(document).ready(function() {
+        $.ajax({
+          url: "https://frontend-take-home.fetchrewards.com/form",
+          type: "GET",
+          success: function(result) {
+            console.log(result);
+            
+			occupations=result.occupations;
+			states=result.states;
+            	var select = document.getElementById("occupation");
+          for(index in occupations) {
+    select.options[select.options.length] = new Option(occupations[index], index);
+}
+          select = document.getElementById("state");
+          for(index in states) {
+    select.options[select.options.length] = new Option(states[index].name, states[index].abbreviation);
+}
+         
+          },
+          error: function(error) {
+            console.log(error);
+          }
+        });
+	
+      });
+    </script>
+	</head>
+<h1 id=fro>User Creation From</h1><br><br><br><br>
+ <form>
+  <label for="fname"><span id=p>Full name:</span></label><br>
+  <input type="text" id="fname" name="fname"><br>
+  <label for="Email"><span id=p> Email:</span></label><br>
+ <input type="text" id="Email" name="Email">
+  <br>
+  <label for="password"><span id=p> password:</span></label><br>
+ <input type="number" id="password" name="password">
+  <br>
+ 
+   <label for="occupation"><span id=s>Occupation </span></label>
+   <select id="occupation" name="Occupation"></select>
+ <br>
+    <br>
+     
+   <label for="state"><span>State </span></label>
+   <select id="state" name="state"></select>
+
+  <br>
+ <P id=submit> Submit</P>
+</form>
+  </htmtl>
